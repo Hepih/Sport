@@ -1,0 +1,91 @@
+<app-banner [y]="title"></app-banner>
+
+  
+  <div class="site-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <form [formGroup]="signupForm">
+            <div class="form-group">
+              <input type="text" formControlName="firstName" class="form-control" placeholder="First Name">
+            </div>
+            <div *ngIf="signupForm.controls['firstName'].invalid &&
+             (signupForm.controls['firstName'].dirty ||
+             signupForm.controls['firstName'].touched )">
+                  <div *ngIf="signupForm.controls['firstName'].errors.required">
+                           firstName required
+                  </div>
+                  <div *ngIf="signupForm.controls['firstName'].errors.minlength">
+                           firstName should have at least 3 caracteres
+                  </div>
+            </div>
+            <div class="form-group">
+                <input type="text"formControlName="lastName" class="form-control" placeholder="Last Name">
+              </div>
+              <div *ngIf="signupForm.controls['lastName'].invalid &&
+             (signupForm.controls['lastName'].dirty ||
+             signupForm.controls['lastName'].touched )">
+                  <div *ngIf="signupForm.controls['lastName'].errors.required">
+                          lastName required
+                  </div>
+                  <div *ngIf="signupForm.controls['lastName'].errors.minlength">
+                         lastName should have at least 4 caracteres
+                  </div>
+            </div>
+            <div class="form-group">
+              <input type="email" formControlName="email" class="form-control" placeholder="Email">
+            </div>
+            <span style="color: red;"> {{errorMsg}}   </span>
+            <div *ngIf="signupForm.controls['email'].invalid &&
+             (signupForm.controls['email'].dirty ||
+             signupForm.controls['email'].touched )">
+                  <div *ngIf="signupForm.controls['email'].errors.required">
+                    email required
+                  </div>
+                  <div *ngIf="signupForm.controls['email'].errors.email">
+                           invalid email format
+                  </div>
+            </div>
+            <div class="form-group">
+                <input type="password" formControlName="pwd" class="form-control" placeholder="password">
+              </div>
+              <div *ngIf="signupForm.controls['pwd'].invalid && 
+                            (signupForm.controls['pwd'].touched ||
+                             signupForm.controls['pwd'].dirty)">
+                      <div *ngIf="signupForm.controls['pwd'].errors.required">
+                             pwd is required
+                      </div>
+                     <div *ngIf="signupForm.controls['pwd'].errors.pattern">
+                               pwd SHOUD haveat  least 5 characters and  maximum 10 characters,
+                               at least one uppercase letter, 
+                               one symbol, and at least one chiffre
+                      </div>
+                </div>
+                <div class="form-group">
+                  <input type="password" formControlName="confirmPwd" class="form-control" placeholder="confirmPwd">
+                </div>
+                <div *ngIf="signupForm.controls['confirmPwd'].invalid && (signupForm.controls['confirmPwd'].dirty || signupForm.controls['confirmPwd'].touched)">
+                    <div *ngIf="signupForm.controls['confirmPwd'].errors.mustMatch">
+                      Confirm Pwd does not mutch Pwd
+
+                    </div>
+                </div>
+                <div class="form-group" style="display: none;">
+                  <input type="file"  class="form-control" #filePicker (change)="onImageSelected($event)">
+                </div>
+                <div class="text-center">
+                 <div><button class="btn btn-success " (click)="filePicker.click()"> Select Your Photo</button></div> 
+                  <div class="my-4"><img [src]="imagePreview" alt="" width="200px"> </div>
+                </div>
+
+            
+            <div class="form-group">
+              <input type="submit"   [disabled]="signupForm.invalid" class="btn btn-primary py-3 px-5" (click)="signup()" value="signup">
+            </div>
+          </form> 
+          {{signupForm.value | json}} 
+        </div>
+        
+      </div>
+    </div>
+  </div>

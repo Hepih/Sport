@@ -1,0 +1,67 @@
+<app-banner [y]="title"></app-banner>
+  
+  <div class="site-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <form [formGroup]="stadiumForm">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="stadium Name" formControlName="name">
+            </div>
+            <div *ngIf="stadiumForm.controls['name'].invalid && 
+             (stadiumForm.controls['name'].touched || stadiumForm.controls['name'].dirty)">
+            <div *ngIf="stadiumForm.controls['name'].errors.required">
+
+                name is required
+            </div>
+          </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Team" formControlName="team" >
+              </div>
+              <div *ngIf="stadiumForm.controls['team'].invalid && 
+            (stadiumForm.controls['team'].touched || stadiumForm.controls['team'].dirty)">
+            <div *ngIf="stadiumForm.controls['team'].errors.required">
+
+                team is required
+            </div>
+          </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Country" formControlName="country" >
+            </div>
+            <div *ngIf="stadiumForm.controls['country'].invalid && 
+            (stadiumForm.controls['country'].touched || stadiumForm.controls['country'].dirty)">
+            <div *ngIf="stadiumForm.controls['country'].errors.required">
+
+                country is required
+            </div>
+          </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="City" formControlName="city" >
+            </div>
+            <div *ngIf="stadiumForm.controls['city'].invalid && 
+            (stadiumForm.controls['city'].touched || stadiumForm.controls['city'].dirty)">
+            <div *ngIf="stadiumForm.controls['city'].errors.required">
+
+                city is required
+            </div>
+          </div>
+            <div class="form-group">
+                <input type="number" class="form-control" placeholder="Capacity" formControlName="capacity" >
+            </div>
+            <div *ngIf="stadiumForm.controls['capacity'].invalid && 
+            (stadiumForm.controls['capacity'].touched || stadiumForm.controls['capacity'].dirty)">
+            <div *ngIf="stadiumForm.controls['capacity'].errors.required">
+                capacity is required
+            </div>
+          </div>
+            
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary py-3 px-5" [disabled]="stadiumForm.invalid"   (click)="addStaduim()"  value="add-stadium">
+            </div>
+          </form>  
+        </div>
+        
+      </div>
+    </div>
+  </div>
+

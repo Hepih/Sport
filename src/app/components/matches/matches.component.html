@@ -1,0 +1,15 @@
+<app-banner [y]="title"></app-banner>
+
+
+  
+  <div class="site-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7"  *ngFor="let match of matches">
+          <app-result [X]="match" (newMatches)="updateMatches($event)"></app-result> 
+        </div>
+       
+        
+      </div>
+    </div>
+  </div>

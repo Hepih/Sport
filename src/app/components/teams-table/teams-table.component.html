@@ -1,0 +1,32 @@
+<div class="widget-next-match container " >
+    <table class="table custom-table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>name</th>
+          <th>owner</th>
+          <th>fondation</th>
+          <th>stadium</th>
+          <th>actions</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of teams">
+          <td>{{t.id}}</td>
+          <td><strong class="text-white">{{t.name}}</strong></td>
+          <td>{{t.owner}}</td>
+          <td>{{t.fondation}}</td>
+          <td>{{t.stadium}}</td>
+          <td>
+            <button class="btn btn-success" style="margin-right: 5%;">display</button>
+            <button class="btn btn-warning" style="margin-right: 5%;" >edit</button>
+            <button class="btn btn-danger" >delete</button>
+          </td>
+          
+      </tr>
+    
+      </tbody>
+    </table>
+  </div>
+

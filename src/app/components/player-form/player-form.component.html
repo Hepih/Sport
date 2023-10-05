@@ -1,0 +1,54 @@
+<app-banner [y]="title"></app-banner>
+
+
+
+<div class="site-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <form  [formGroup]="playerForm">
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="namee"  placeholder="namee"  name="namee">
+          </div>
+          <div *ngIf="playerForm.controls['namee'].invalid && 
+                   (playerForm.controls['namee'].touched ||
+                    playerForm.controls['namee'].dirty)">
+          <div *ngIf="playerForm.controls['namee'].errors.required">
+          name is required
+          </div>
+          <div *ngIf="playerForm.controls['namee'].errors.minlength">
+            name should have at least 3 characters
+          </div>
+        </div>
+          <div class="form-group">
+              <input type="number" class="form-control"  formControlName ="age"    placeholder="age" name="age">
+            </div>
+          <div class="form-group">
+              <input type="number" class="form-control"    formControlName ="nbr" placeholder="nbr" name="nbr">
+            </div>
+          <div class="form-group">
+              <input type="text" class="form-control" placeholder="position"    formControlName ="position"  name="position">
+            </div>
+          <div class="form-group">
+            <select name="teamId" class="form-control" (change)="selectTeamId($event)">
+              <option *ngFor="let t of teamsTab" style="color: black;" [value]="t._id"> {{t.name}}</option>
+            </select>
+            </div>
+            <div class="form-group" style="display: none;">
+              <input type="file"  class="form-control" #filePicker (change)="onImageSelected($event)">
+            </div>
+            <div class="text-center">
+             <div><button class="btn btn-success " (click)="filePicker.click()"> Select Your Photo</button></div> 
+              <div class="my-4"><img [src]="imagePreview" alt="" width="200px"> </div>
+            </div>
+          
+          
+          <div class="form-group">
+            <input type="submit" class="btn btn-primary py-3 px-5" value="add/edit" (click)=" addOrEditPlayer()">
+          </div>
+        </form>  
+      </div>
+      
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+
+
+<div class="widget-next-match container " >
+  <h4 class="text-center">{{title|titlecase}} {{actualDate|date:"dd/MM/yyyy"}}</h4>
+  <form class="form-group " style="margin: 30px;">
+    <label for="" class="text-white"> Search by Team </label>
+    <input type="text"    [(ngModel)]="term"  name="term"  class="form-control"> <!-- [(ngModel)] bch tekhou l valeur li ketbneha fil input fi west variable esmou term-->
+  </form>
+    <table class="table custom-table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>teamOne</th>
+          <th>teamTwo</th>
+          <th>scoreOne</th>
+          <th>scoreTwo</th>
+          <th>actions</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let match of pageOfItems | myFilter:term">
+          <td>{{match._id}}</td>
+          <td><strong class="text-white">{{match.teamOne|reverse }}</strong></td> <!--| reverse appel du Pipe qu'on a crée pour renverser la chaine  // |asterix appel d'un pipe qu'on a cree pour remplacer le voyelle par * --> 
+          <td><strong class="text-white">{{match.teamTwo|uppercase |asterix}}</strong></td> <!-- |upercase appel de pipe predifinis dans l angular --> 
+          <td>{{match.scoreOne}}</td>
+          <td>{{match.scoreTwo}}</td>
+          <td>
+            <button class="btn btn-success" style="margin-right: 5%;" (click)="goToDisplay(match._id)">display</button>
+            <button class="btn btn-warning" style="margin-right: 5%;" (click)="goToEditMatch(match._id)" >edit</button>
+            <button class="btn btn-danger" (click)="deleteMatch(match._id)" >delete</button>
+         </td>|
+          
+      </tr>
+    
+      </tbody>
+      <div class="card-footer pb-0 pt-3">
+        <jw-pagination
+        [items]="matches" [pageSize]="3" (changePage)="onChangePage($event)"></jw-pagination>
+        </div>
+    </table>
+  </div>
+
